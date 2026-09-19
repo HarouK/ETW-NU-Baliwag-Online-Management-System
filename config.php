@@ -1,10 +1,29 @@
 <?php
 session_start();
 
-$host = '127.0.0.1';
-$db   = 'etw_nu_baliwag';
-$user = 'root';
-$pass = '';
+/*
+ * ETW environment-safe database configuration.
+ * Local XAMPP uses the local database.
+ * InfinityFree uses the hosted MySQL server.
+ * For InfinityFree, set ETW_HOSTED_DB_PASSWORD to your hosting DB password
+ * in this file before uploading, or replace the placeholder directly.
+ */
+$isHosted = isset($_SERVER['HTTP_HOST']) && (
+    stripos($_SERVER['HTTP_HOST'], 'great-site.net') !== false ||
+    stripos($_SERVER['HTTP_HOST'], 'infinityfree') !== false
+);
+
+if ($isHosted) {
+    $host = 'sql211.infinityfree.com';
+    $db   = 'if0_42956601_etw';
+    $user = 'if0_42956601';
+    $pass = getenv('ETW_HOSTED_DB_PASSWORD') ?: 'PASTE_YOUR_INFINITYFREE_DB_PASSWORD_HERE';
+} else {
+    $host = '127.0.0.1';
+    $db   = 'etw_nu_baliwag';
+    $user = 'root';
+    $pass = '';
+}
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -16,7 +35,7 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    die('Database connection failed. Check XAMPP MySQL and config.php.');
+    die('Database connection failed. Check the active database configuration in config.php.');
 }
 
 // Automatic feature-table/column upgrades for the school prototype.

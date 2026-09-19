@@ -602,3 +602,212 @@ img{max-width:100%;height:auto}
 .message-image-name{display:block;font-size:9px;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#718096}
 .message-row.mine .message-image-name{color:rgba(255,255,255,.8)}
 @media(max-width:600px){.message-image-attachment,.message-image-attachment img{max-width:100%}.message-image-attachment img{max-height:240px}}
+
+/* MOBILE HEADER + PROFILE MENU FINAL FIX
+   Keeps the shared Student/Faculty/Admin header in normal document flow.
+   The previous fixed 78px header could let the term selector spill over page content. */
+.top{
+  position:relative;
+  z-index:2000;
+  overflow:visible;
+}
+.top-actions,
+.notification-menu-wrap,
+.profile-menu-wrap{
+  position:relative;
+  z-index:2001;
+}
+.profile-menu{z-index:3000!important;}
+.notification-dropdown{z-index:2999!important;}
+
+@media(max-width:600px){
+  .main{overflow:visible!important;}
+  .top{
+    height:auto!important;
+    min-height:60px!important;
+    margin-bottom:20px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto auto!important;
+    grid-template-rows:auto auto!important;
+    align-items:center!important;
+    column-gap:10px!important;
+    row-gap:8px!important;
+    padding:10px 12px!important;
+    position:relative!important;
+    z-index:2000!important;
+    overflow:visible!important;
+  }
+  .top-title-group{
+    grid-column:1!important;
+    grid-row:1!important;
+    min-width:0!important;
+  }
+  .top-title-group h1{max-width:100%!important;}
+  .top-actions{
+    display:contents!important;
+  }
+  .notification-menu-wrap{
+    grid-column:2!important;
+    grid-row:1!important;
+    justify-self:end!important;
+  }
+  .profile-menu-wrap{
+    grid-column:3!important;
+    grid-row:1!important;
+    justify-self:end!important;
+  }
+  .term-switcher{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    justify-content:stretch!important;
+    order:initial!important;
+  }
+  .term-switcher select{
+    width:100%!important;
+    max-width:none!important;
+    flex:1 1 auto!important;
+    min-width:0!important;
+  }
+  .profile-menu{
+    position:fixed!important;
+    top:calc(60px + env(safe-area-inset-top))!important;
+    right:8px!important;
+    left:auto!important;
+    width:min(290px,calc(100vw - 16px))!important;
+    max-height:calc(100vh - 76px)!important;
+    overflow:auto!important;
+    z-index:3000!important;
+  }
+  .notification-dropdown{
+    position:fixed!important;
+    top:calc(60px + env(safe-area-inset-top))!important;
+    right:8px!important;
+    left:8px!important;
+    width:auto!important;
+    max-height:calc(100vh - 76px)!important;
+    z-index:2999!important;
+  }
+}
+
+@media(min-width:601px){
+  .top{overflow:visible!important;}
+  .profile-menu{z-index:3000!important;}
+  .notification-dropdown{z-index:2999!important;}
+}
+
+
+/* FIX: LOGIN INPUT VISIBILITY */
+.auth-page .auth-form .field input[type="text"],
+.auth-page .auth-form .field input[type="password"]{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  min-width:0!important;
+  height:48px!important;
+  min-height:48px!important;
+  box-sizing:border-box!important;
+  border:1px solid #dfe5ef!important;
+  border-radius:9px!important;
+  background:#fbfcfe!important;
+  color:#17233c!important;
+  padding:0 14px!important;
+  position:relative!important;
+  z-index:2!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+.auth-page .auth-form .field input[type="text"]::placeholder,
+.auth-page .auth-form .field input[type="password"]::placeholder{
+  color:#9aa5b8!important;
+  opacity:1!important;
+}
+.auth-page .auth-form .field input[type="text"]:focus,
+.auth-page .auth-form .field input[type="password"]:focus{
+  border-color:#7290c8!important;
+  background:#fff!important;
+  box-shadow:0 0 0 3px rgba(31,77,168,.08)!important;
+}
+
+
+/* =========================================================
+   FINAL STABILITY PASS — LOGIN + MOBILE HEADER
+   Safe for Student / Faculty / Admin shared layout.
+   ========================================================= */
+.auth-page .auth-form .field{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:visible!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.auth-page .auth-form .field label{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:2!important;
+}
+.auth-page .auth-form .field input,
+.auth-page .auth-form .field select,
+.auth-page .auth-form .field textarea{
+  display:block!important;
+  position:relative!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  height:48px!important;
+  min-height:48px!important;
+  max-height:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+  overflow:visible!important;
+  color:#17233c!important;
+  background:#fbfcfe!important;
+  border:1px solid #cfd7e4!important;
+  border-radius:9px!important;
+  padding:0 14px!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+.auth-page .auth-form .field input::placeholder{
+  color:#9aa5b8!important;
+  opacity:1!important;
+}
+.auth-page .auth-form .field input:focus,
+.auth-page .auth-form .field select:focus{
+  border-color:#7290c8!important;
+  background:#fff!important;
+  box-shadow:0 0 0 3px rgba(31,77,168,.08)!important;
+}
+
+/* The mobile header has two rows: title/actions, then academic term.
+   Dropdowns must begin below both rows rather than under row one. */
+@media(max-width:600px){
+  .top{
+    min-height:104px!important;
+    height:auto!important;
+    overflow:visible!important;
+    isolation:isolate!important;
+  }
+  .profile-menu-wrap,
+  .notification-menu-wrap{
+    z-index:4001!important;
+  }
+  .profile-menu,
+  .notification-dropdown{
+    top:106px!important;
+    z-index:5000!important;
+  }
+  .profile-menu{
+    max-height:calc(100vh - 116px)!important;
+  }
+  .notification-dropdown{
+    max-height:calc(100vh - 116px)!important;
+  }
+}

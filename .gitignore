@@ -1,0 +1,22 @@
+# Local / generated files
+uploads/
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets / environment configuration
+.env
+config.local.php
+
+# Database backups / dumps that may contain real data
+*.sql.bak
+*.dump
+*.backup.sql
+
+# OS/editor files
+*.swp
+*.swo
