@@ -1,6 +1,6 @@
 # ETW – NU Baliwag Online Management System
 
-PHP + MySQL prototype for XAMPP.
+
 
 ## Student features
 - Dashboard with student information, quick actions, reminders, notifications, units, and active tickets.
@@ -21,9 +21,6 @@ PHP + MySQL prototype for XAMPP.
 - Faculty: faculty@nu-baliwag.edu.ph / password
 - Admin: admin@nu-baliwag.edu.ph / password
 
-## XAMPP
-Put the folder in `C:\xampp\htdocs`, start Apache and MySQL, then open:
-`http://localhost/ETW_NU_Baliwag_OMS_PHP_HUMAN_UI/`
 
 For an existing database, no re-import is needed. Feature tables/columns are upgraded automatically when the site is opened.
 
